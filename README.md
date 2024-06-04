@@ -31,11 +31,11 @@ O bot de música para Discord oferece as seguintes funcionalidades:
 
 1. Clone este repositório para o seu ambiente local.
    ```bash
-   git clone <URL_do_repositório>
+   git clone https://github.com/herikk04/BOT-DC-Funcional
    ```
 2. Navegue até o diretório do projeto.
    ```bash
-   cd <diretório_do_projeto>
+   cd BOT-DC-Funcional
    ```
 3. Crie e ative um ambiente virtual.
    ```bash
@@ -46,7 +46,7 @@ O bot de música para Discord oferece as seguintes funcionalidades:
    ```bash
    pip install -r requirements.txt
    ```
-5. Crie um arquivo `.env` na raiz do projeto e adicione suas variáveis de ambiente, incluindo o token do seu bot do Discord.
+5. Crie um arquivo `.env` na raiz do projeto e adicione suas variáveis de ambiente, incluindo o ID e o token do seu bot do Discord.
    ```
    DISCORD_TOKEN=<seu_token_do_discord>
    ```
@@ -57,8 +57,7 @@ O bot de música para Discord oferece as seguintes funcionalidades:
 
 ## Autores
 
-- **Seu Nome**
-- **Thiago**
+- **Herik Kauan De Assis**
 
 ## Contribuições
 
