@@ -1,8 +1,9 @@
 import discord
 from discord import app_commands
 from discord.ext import commands
-
+from datatime import datetime
 from youtube_dl import YoutubeDL
+from discord_slash.utils.manage_commands import create_option, create_choice
 
 
 class TutorialButton(discord.ui.View):
@@ -177,4 +178,48 @@ class music(commands.Cog):
 
 async def setup(client):
     await client.add_cog(music(client))
+
+
+class Disconnect(commands.Cog):
+    def __init__(self, client):
+        self.client = client
+
+    @commands.command(name="disconnect")
+    async def disconnect_command(self, ctx: commands.Context):
+        """Disconnect bot
+        Args:
+            ctx (commands.Context): _description_
+        """
+
+        if not ctx.author.voice:
+            await ctx.send("Você não está conectado a nenhum canal de voz.")
+            return
+
+        if ctx.voice_client is None or ctx.voice_client.channel is None:
+            await ctx.send("O bot não está tocando nada.")
+            return
+
+        if ctx.voice_client.channel.id != ctx.author.voice.channel.id:
+            await ctx.send(
+                "Entre no canal de voz onde o bot está tocando para desconectá-lo."
+            )
+            return
+
+        await self.disconnect_player(ctx.guild)
+        await ctx.send(
+            f"Desconectado por {ctx.author.mention} em {discord.utils.format_dt(datetime.now())} ."
+        )
+
+    async def disconnect_player(self, guild: discord.Guild):
+        """_summary_
+        Args:
+            guild (discord.Guild): _description_
+        """
+        vc = discord.utils.get(self.client.voice_clients, guild=guild)
+
+        if vc is not None:
+            await vc.disconnect()
+
+def setup(client):
+    client.add_cog(Disconnect(client))
     
